@@ -6,19 +6,131 @@
     <title>tambahkan catatan</title>
     <link rel="stylesheet" href="./style/style.css">
     <style>
+        .papan {
+            height: 100vh;
+            width: 100%;
+            .judulan {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                .kotak {
+                    height: 30px;
+                    width: 32px;
+                    background-color: var(--gelap);
+                }
+                input {
+                    outline: none;
+                    border: none;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    line-height: 1.56rem;
+                }
+            }
+        }
+        
+        .tambahkan {
+            width: 3.4rem;
+            aspect-ratio: 1;
+
+            padding: .5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--lStealB);
+
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+
+            svg {
+                width: 1.5rem;
+                aspect-ratio: 1;
+                fill: var(--terang);
+            }
+        }
+
         input, textarea {
             padding: 6px 12px;
         }
+
+        textarea {
+            font-size: 1rem;
+            color: #333;
+
+            line-height: 1.56rem;
+
+            border: 1px solid #dcdcdc;
+            background-color: #ffffff;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+            
+            padding: 0 6px;
+            padding-left: 12px;
+
+            background-image: linear-gradient(to right, #ffabab 3px, transparent 3px),
+                              linear-gradient(to bottom, transparent 24px, #e0e0e0 1px);
+            
+            background-size: 100% 25px, 100% 25px;
+            background-repeat: no-repeat, repeat-y;
+            
+            background-attachment: local;
+
+            width: 100%;
+            height: 100%;
+            resize: none;
+        }
+        
+        textarea:focus {
+            outline: none;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <input type="text" placeholder="judulin">   
+        <div class="papan">
+            <div class="judulan">
+                <div class="kotak"></div>
+                <input type="text" placeholder="judulin">   
+            </div>
+            <textarea name="catatan" id="2"></textarea>
+        </div>
+
+        <div class="tambahkan">
+            
+            <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+                <path d="
+                M 16 80 H 80 V 16 H 112 V 80 H 176 V 112 H 112 V 176 H 80 V 112 H 16
+                "></path>
+            </svg>
+        </div>
     </div>
     
 
 <script>
-    console.log(localStorage.getItem("catatan"));
+    const catatanString = localStorage.getItem("catatan");
+
+    const tombolTambahkan = document.querySelector(".tambahkan")
+    const judul = document.querySelector("input").value;
+    const catatan = document.querySelector("textarea");
+    catatan.focus();
+
+    tombolTambahkan.addEventListener("click", function(){
+        const data = {
+            judul:judul, 
+            isi:catatan.value
+        }
+
+        if(catatanString){
+            const jsonCatatan = JSON.parse(catatanString);
+            jsonCatatan.push(data);
+
+            console.log(jsonCatatan);
+            const jsonCacatanKeString = JSON.stringify(jsonCatatan);
+            localStorage.setItem("catatan", jsonCacatanKeString);
+
+            window.location.replace("/");
+        }
+    });
+
 </script>
 </body>
 </html>

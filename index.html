@@ -51,9 +51,12 @@
         </div>
     </div>
 <script>
-    const dataTerCatat = localStorage.getItem("catatan");
+    let dataTerCatat = localStorage.getItem("catatan");
+
     if(dataTerCatat){
-        console.log(JSON.parse(dataTerCatat))
+        
+        console.log(JSON.parse(dataTerCatat));
+
     } else {
         const catatanPertama = [
             {
@@ -63,9 +66,11 @@
         ]
         const strngCatatanPertama = JSON.stringify(catatanPertama);
         localStorage.setItem("catatan", strngCatatanPertama);
+        dataTerCatat = localStorage.getItem("catatan");
     }
 
     tampilkanCatatan(JSON.parse(dataTerCatat));
+    
     function tampilkanCatatan(data){
         const wrapper = document.querySelector(".wrapper");
         try {
