@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Textarea Kertas Catatan</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        /* Ini adalah styling intinya */
+        .kertas-catatan {
+            /* 1. Tampilan Font */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            color: #333;
+
+            /* 2. Atur line-height (Jarak antar baris teks) */
+            line-height: 25px; 
+
+            /* 3. Tampilan Kertas */
+            border: 1px solid #dcdcdc;
+            background-color: #ffffff;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+            
+            /* Beri ruang agar teks tidak menempel di tepi */
+            padding: 10px;
+            padding-left: 35px; /* Ruang untuk margin merah */
+            padding-top: 15px;  /* Ruang di atas baris pertama */
+
+            /* 4. Trik Garis Latar Belakang */
+            background-image: linear-gradient(to right, #ffabab 3px, transparent 3px), /* Garis margin merah */
+                              linear-gradient(to bottom, transparent 24px, #e0e0e0 1px); /* Garis horizontal */
+            
+            background-size: 100% 25px, 100% 25px; /* Samakan dengan line-height */
+            background-repeat: no-repeat, repeat-y;
+            
+            /* 5. Penting: Garis ikut scroll bersama teks */
+            background-attachment: local;
+
+            /* Ukuran textarea */
+            width: 400px;
+            height: 300px;
+            resize: none; /* Opsional: matikan resize */
+        }
+
+        /* Menghilangkan outline biru saat di-klik (opsional) */
+        .kertas-catatan:focus {
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <textarea class="kertas-catatan" placeholder="Mulai menulis..."></textarea>
+
+</body>
+</html>
