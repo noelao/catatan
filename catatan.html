@@ -89,7 +89,7 @@
         <div class="papan">
             <div class="judulan">
                 <div class="kotak"></div>
-                <input type="text" placeholder="judulin">   
+                <input type="text" class="judul" placeholder="judulin">   
             </div>
             <textarea name="catatan" id="2"></textarea>
         </div>
@@ -109,7 +109,7 @@
     const catatanString = localStorage.getItem("catatan");
 
     const tombolTambahkan = document.querySelector(".tambahkan")
-    const judul = document.querySelector("input");
+    const judul = document.querySelector(".judulan input.judul");
     const catatan = document.querySelector("textarea");
     catatan.focus();
 
