@@ -26,6 +26,12 @@
             display: flex;
             flex-direction: column;
             padding: .5rem;
+            a {
+                display: flex;
+                max-width: 430px;
+                justify-content: space-between;
+                width: 100%;
+            }
         }
         .gap {
             height: 3rem;    
@@ -77,7 +83,8 @@
         } catch(err){
             console.log(err);
         } finally {
-            data.forEach((ini, i)=>{
+            data.reverse().forEach((ini, i)=>{
+                const angkaId = data.length - parseInt(i) -1;
                 let judulanIni = ""
                 if(ini.judul != ""){
                     judulanIni = ini.judul
@@ -89,14 +96,25 @@
                         };
                     }).join("");
                     judulanIni = maxKata+"...";
-                    console.log(maxKata);
+                }
+
+                let tanggal = ""
+                if(ini.waktu){
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+                    tanggal = new Date(ini.waktu).toLocaleDateString('id-ID', options)
+                } else {
+
                 }
 
                 const htmlClass = `
-                <a href="./catatan.html?id=${i}" class="judul">
+                <a href="./catatan.html?id=${angkaId}" class="judul">
                     <h2>
                         ${judulanIni}
                     </h2>
+                    <small>
+                        ${tanggal}
+                    </small>
                 </a>
                 `
 

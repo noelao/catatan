@@ -111,12 +111,13 @@
     const tombolTambahkan = document.querySelector(".tambahkan")
     const judul = document.querySelector(".judulan input.judul");
     const catatan = document.querySelector("textarea");
-    catatan.focus();
+    judul.focus();
 
     tombolTambahkan.addEventListener("click", function(){
         const data = {
             judul:judul.value, 
-            isi:catatan.value
+            isi:catatan.value,
+            waktu:new Date()
         }
         console.log(data);
 
