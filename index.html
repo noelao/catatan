@@ -79,7 +79,7 @@
         } finally {
             data.forEach((ini, i)=>{
                 let judulanIni = ""
-                if(ini.judul){
+                if(ini.judul != ""){
                     judulanIni = ini.judul
                 } else {
                     const arrHuruf = ini.isi.split("");
