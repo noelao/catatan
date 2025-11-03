@@ -78,10 +78,24 @@
             console.log(err);
         } finally {
             data.forEach((ini, i)=>{
+                let judulanIni = ""
+                if(ini.judul){
+                    judulanIni = ini.judul
+                } else {
+                    const arrHuruf = ini.isi.split("");
+                    const maxKata = arrHuruf.map((ini, i) => {
+                        if(i < 10){
+                            return ini;
+                        };
+                    }).join("");
+                    judulanIni = maxKata;
+                    console.log(maxKata);
+                }
+
                 const htmlClass = `
                 <a href="./catatan.html?id=${i}" class="judul">
                     <h2>
-                        ${ini.judul==null ? i : ini.judul }
+                        ${judulanIni}
                     </h2>
                 </a>
                 `
